@@ -1,11 +1,31 @@
 repeat task.wait() until game:IsLoaded()
-queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot5.luau",true))()]])
+queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot6.luau",true))()]])
 
-local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 local TeleportService = game:GetService("TeleportService")
+
 local plr = Players.LocalPlayer
+
+local function hop()
+    local servers = {}
+    local req = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
+    local body = HttpService:JSONDecode(req)
+
+    if body and body.data then
+        for _, v in next, body.data do
+            if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
+                table.insert(servers, 1, v.id)
+            end
+        end
+    end
+
+    if #servers > 0 then
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], plr)
+    end
+end
 
 task.spawn(function()
     while RunService.Heartbeat:Wait() do
@@ -14,6 +34,15 @@ task.spawn(function()
 
         local root = character.PrimaryPart
         if not root or not root.Parent then continue end
+
+        for _, v in pairs(CoreGui:GetDescendants()) do
+            if v.Name == "PlayerIcon" and v.ClassName == "TextLabel" and v.Text ~= "premium" then
+                while true do
+                    hop()
+                    task.wait(3)
+                end
+            end
+        end
 
         for _, child in pairs(character:GetDescendants()) do
             if v:IsA("Humanoid") then v.Jump = true end
@@ -83,24 +112,6 @@ task.spawn(function()
 end)
 
 task.wait(30)
-
-local function hop()
-    local servers = {}
-    local req = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
-    local body = HttpService:JSONDecode(req)
-
-    if body and body.data then
-        for _, v in next, body.data do
-            if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
-                table.insert(servers, 1, v.id)
-            end
-        end
-    end
-
-    if #servers > 0 then
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], plr)
-    end
-end
 
 while true do
     hop()
