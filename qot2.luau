@@ -81,7 +81,7 @@ task.spawn(function()
     end
 end)
 
-task.wait(180)
+task.wait(60)
 
 local function hop()
     local servers = {}
