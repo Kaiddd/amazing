@@ -1,5 +1,5 @@
 repeat task.wait() until game:IsLoaded()
-queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot2.luau",true))()]])
+queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot3.luau",true))()]])
 
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
