@@ -1,5 +1,5 @@
 repeat task.wait() until game:IsLoaded()
-queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot8.luau",true))()]])
+queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot9.luau",true))()]])
 
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
@@ -36,7 +36,7 @@ task.spawn(function()
         if not root or not root.Parent then continue end
 
         for _, child in pairs(character:GetDescendants()) do
-            if child:IsA("Humanoid") then v.Jump = true end
+            if child:IsA("Humanoid") then child.Jump = true end
             if child:IsA("BasePart") and child.CanCollide then
                 child.CanCollide = false
             end
