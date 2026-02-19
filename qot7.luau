@@ -1,5 +1,5 @@
 repeat task.wait() until game:IsLoaded()
-queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot6.luau",true))()]])
+queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot7.luau",true))()]])
 
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
@@ -34,15 +34,6 @@ task.spawn(function()
 
         local root = character.PrimaryPart
         if not root or not root.Parent then continue end
-
-        for _, v in pairs(CoreGui:GetDescendants()) do
-            if v.Name == "PlayerIcon" and v.ClassName == "TextLabel" and v.Text ~= "premium" then
-                while true do
-                    hop()
-                    task.wait(3)
-                end
-            end
-        end
 
         for _, child in pairs(character:GetDescendants()) do
             if v:IsA("Humanoid") then v.Jump = true end
@@ -80,6 +71,15 @@ task.spawn(function()
     while true do
         for _, v in pairs(Players:GetPlayers()) do
             pcall(function()
+                for _, v in pairs(CoreGui.PlayerList:GetDescendants()) do
+                    if v.Name == "PlayerIcon" and v.ClassName == "TextLabel" and v.Text ~= "premium" then
+                        while true do
+                            hop()
+                            task.wait(3)
+                        end
+                    end
+                end
+
                 local targetRoot = v.Character.Humanoid.RootPart
                 local myRoot = plr.Character.Humanoid.RootPart
 
