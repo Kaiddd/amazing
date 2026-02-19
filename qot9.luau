@@ -94,7 +94,7 @@ task.spawn(function()
                     if dt > 0 and dt < 1 then
                         local estimatedVel = (targetPos - prevPositions[userId]) / dt
 
-                        local predictionTime = 0.1 + 0.05
+                        local predictionTime = 0.1 + 0.1
                         local offset = estimatedVel * predictionTime
 
                         predicted = targetRoot.CFrame + offset
