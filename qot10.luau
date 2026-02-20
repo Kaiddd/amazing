@@ -1,5 +1,5 @@
 repeat task.wait() until game:IsLoaded()
-queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot9.luau",true))()]])
+queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot10.luau",true))()]])
 
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
@@ -74,7 +74,9 @@ task.spawn(function()
                 for _, v in pairs(CoreGui.PlayerList:GetDescendants()) do
                     if v.Name == "PlayerIcon" and v.ClassName == "TextLabel" and v.Text ~= "premium" then
                         while true do
-                            hop()
+                            pcall(function()
+                                hop()
+                            end)
                             task.wait(3)
                         end
                     end
@@ -114,6 +116,8 @@ end)
 task.wait(30)
 
 while true do
-    hop()
+    pcall(function()
+        hop()
+    end)
     task.wait(3)
 end
