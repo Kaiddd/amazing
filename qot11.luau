@@ -1,5 +1,5 @@
 repeat task.wait() until game:IsLoaded()
-queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot10.luau",true))()]])
+queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaiddd/amazing/refs/heads/main/qot11.luau",true))()]])
 
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
@@ -113,7 +113,7 @@ task.spawn(function()
     end
 end)
 
-task.wait(30)
+task.wait(15)
 
 while true do
     pcall(function()
